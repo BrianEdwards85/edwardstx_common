@@ -64,7 +64,7 @@
                                  false             ;;ignoreExceptions
                                  nil               ;;uri
                                  host              ;;host
-                                 port              ;;port
+                                 (str port)        ;;port
                                  nil               ;;addresses
                                  username          ;;user
                                  password          ;;password
@@ -105,10 +105,10 @@
         cap-key   (-> root .getAppenders .keySet first)
         ]
     (.removeAppender root cap-key)
-    (.setLevel root Level/DEBUG)
+    (.setLevel root Level/INFO)
     (.start appender)
     (.addAppender config appender)
-    (.addAppender root appender Level/DEBUG nil)
+    (.addAppender root appender Level/INFO nil)
     (.updateLoggers ctx)
     ctx))
 

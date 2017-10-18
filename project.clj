@@ -1,4 +1,4 @@
-(defproject us.edwardstx/edwardstx_common "1.0.0-SNAPSHOT"
+(defproject us.edwardstx/edwardstx_common "1.0.2-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
