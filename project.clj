@@ -1,4 +1,4 @@
-(defproject us.edwardstx/edwardstx_common "1.0.2-SNAPSHOT"
+(defproject us.edwardstx/edwardstx_common "1.0.3-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -9,6 +9,8 @@
                  [org.clojure/data.json "0.2.6"]
                  [org.clojure/tools.logging "0.3.1"]
                  [org.clojure/core.async "0.3.443"]
+
+                 [cheshire "5.8.0"]
 
                  [yada "1.2.9"]
                  [aleph "0.4.3"]
