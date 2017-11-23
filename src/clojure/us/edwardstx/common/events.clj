@@ -1,15 +1,17 @@
 (ns us.edwardstx.common.events
   (:require [us.edwardstx.common.rabbitmq :refer [get-channel] :as rabbitmq]
-            [us.edwardstx.common.uuid :refer [uuid]]
-            [cheshire.core :as json]
-            [langohr.consumers          :as lc]
-            [langohr.queue              :as lq]
-            [langohr.basic     :as lb]
-            [langohr.core :as rmq]
-            [manifold.stream :as s]
-            [manifold.deferred          :as d]
-            [clojure.tools.logging :as log]
-            [com.stuartsierra.component :as component]))
+            [us.edwardstx.common.uuid     :refer [uuid]]
+            [clj-time.coerce              :as coerce]
+            [clj-time.core                :as time]
+            [cheshire.core                :as json]
+            [langohr.consumers            :as lc]
+            [langohr.queue                :as lq]
+            [langohr.basic                :as lb]
+            [langohr.core                 :as rmq]
+            [manifold.stream              :as s]
+            [manifold.deferred            :as d]
+            [clojure.tools.logging        :as log]
+            [com.stuartsierra.component   :as component]))
 
 (defn publish-event-handler [service-name rabbitmq {:keys [body key id]}]
   (let [routing-key (format "events.%s.%s" service-name key)
@@ -18,6 +20,7 @@
     (try
       (lb/publish channel "events" routing-key payload {:content-type "application/json"
                                                         :message-id id
+                                                        :timestamp (coerce/to-date (time/now))
                                                         :app-id service-name
                                                         :type key})
       (catch Exception ex #(log/error ex "Unable to publis event"))

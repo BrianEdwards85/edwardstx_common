@@ -1,6 +1,8 @@
 (ns us.edwardstx.common.tasks
   (:require [us.edwardstx.common.rabbitmq :refer [get-channel] :as rabbitmq]
-            [us.edwardstx.common.uuid :refer [uuid]]
+            [us.edwardstx.common.uuid   :refer [uuid]]
+            [clj-time.coerce            :as coerce]
+            [clj-time.core              :as time]
             [cheshire.core              :as json]
             [langohr.basic              :as lb]
             [langohr.core               :as rmq]
@@ -56,6 +58,7 @@
                 (merge opt
                        {:content-type "application/json"
                         :correlation-id cid
+                        :timestamp (coerce/to-date (time/now))
                         :app-id service-name
                         :type key
                         :message-id mid}))
