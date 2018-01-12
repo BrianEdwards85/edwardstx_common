@@ -1,5 +1,5 @@
 (defproject us.edwardstx/edwardstx_common "1.0.5-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "Common Libs"
   :url "https://github.com/BrianEdwards85/edwardstx_common"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
